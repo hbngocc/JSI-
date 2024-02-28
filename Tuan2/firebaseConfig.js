@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js'
 const firebaseConfig = {
     apiKey: "AIzaSyAyECIXVyjuNeaNWW7rsJyVULpiWeCHseE",
     authDomain: "jsituan2.firebaseapp.com",
@@ -14,10 +14,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 
-export const dangky = async (auth, email, password) => {
+export const dangky = async (auth, email, pass) => {
+    let isSuccess;
+    let infoMessage;
     try {
-        const user = await createUserWithEmailAndPassword(auth, email, password);
+        const user = await createUserWithEmailAndPassword(auth, email, pass);
+        isSuccess=true;
     } catch (error) {
-        console.log(error.code);
+        isSuccess=false;
+        infoMessage= error.code;
     }
+
+    return {
+        isSuccess,
+        infoMessage,
+    };
+};
+
+export const dangnhap = async (auth, email, pass) => {
+    let isSuccess;
+    let infoMessage;
+    try {
+        const user = await signInWithEmailAndPassword(auth, email, pass);
+        isSuccess=true;
+    } catch (error) {
+        isSuccess=false;
+        infoMessage= error.code;
+    }
+
+    return {
+        isSuccess,
+        infoMessage,
+    };
 };
