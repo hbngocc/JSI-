@@ -6,6 +6,11 @@ loginBtn.addEventListener("click", async function () {
     let email = document.querySelector("#form2Example17");
     let pass = document.querySelector("#form2Example27");
     const { isSuccess, infoMessage } = await dangky(auth, email.value, pass.value);
-    console.log(isSuccess);
-    console.log(infoMessage);
+    if (isSuccess) {
+        alert("Dang ky thanh cong");
+    } else {
+        if(infoMessage == "auth/missing-password") {
+            pass.classList.add("errorPass");
+        }
+    }
 });
