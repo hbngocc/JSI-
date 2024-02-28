@@ -18,6 +18,6 @@ export const dangky = async (auth, email, password) => {
     try {
         const user = await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
-        console.log(error.code)
+        console.log(error.code);
     }
 };
