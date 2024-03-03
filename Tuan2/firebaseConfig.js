@@ -23,6 +23,7 @@ export const dangky = async (auth, email, pass) => {
     } catch (error) {
         isSuccess=false;
         infoMessage= error.code;
+        
     }
 
     return {
