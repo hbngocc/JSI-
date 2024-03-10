@@ -86,7 +86,7 @@ const renderPaginationNumber = async (currentPageNumber, productLimit) => {
     for (let i = 1; i <= PaginationQuantity; i++) {
         html += `
             <li class="page-item ${currentPageNumber == i ? "active" : ""}">
-            <a class="page-link"${i}</a></li>
+            <a class="page-link">${i}</a></li>
             `;
         }
         html += `
@@ -94,6 +94,7 @@ const renderPaginationNumber = async (currentPageNumber, productLimit) => {
             <a class="page-link">Next</a>
             </li>
             `;
+           
         paginationElement.innerHTML = html;
     }
 };
@@ -116,7 +117,7 @@ if(currentPage == PaginationQuantity) {
 localStorage.setItem("pageNumber", ++currentPage);
 }
 const app = () => {
-    let productLimit = 10;
+    let productLimit = 20;
     if(localStorage.getItem("pageNumber")){
         renderPage(localStorage.getItem("pageNumber"), productLimit);
     renderPaginationNumber(localStorage.getItem("pageNumber"), productLimit);
@@ -124,7 +125,5 @@ const app = () => {
         renderPage(1, productLimit)
         renderPaginationNumber
     }
-    renderPage(localStorage.getItem("pageNumber"), productLimit);
-    renderPaginationNumber(localStorage.getItem("pageNumber"), productLimit);
 };
 app();
